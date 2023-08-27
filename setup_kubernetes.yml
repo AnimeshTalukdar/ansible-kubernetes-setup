@@ -1,0 +1,62 @@
+---
+- name: Install Updates
+  hosts: all
+  tasks:
+    - name: Updating
+      tags: always
+      changed_when: false
+      ansible.builtin.apt:
+        update_cache: true
+        upgrade: true
+- name: Install sudo and fish
+  hosts: all
+  tasks:
+    - name: Installing sudo and fish
+      tags: always
+      ansible.builtin.apt:
+        name:
+          - sudo
+          - fish
+- name: Install docker, apt-transport-https , curl
+  hosts: all
+  tasks:
+    - name: Installing Docker and others
+      tags: always
+      ansible.builtin.apt:
+        name:
+          - docker.io
+          - apt-transport-https
+          - curl
+# add a gpg key
+- name: Add Kubernetes GPG key
+  hosts: all
+  tasks:
+    - name: Adding Kubernetes GPG key
+      tags: always
+      ansible.builtin.apt_key:
+        url: https://packages.cloud.google.com/apt/doc/apt-key.gpg
+        state: present
+
+# add a repo
+- name: Add Kubernetes Repo
+  hosts: all
+  tasks:
+    - name: Adding Kubernetes Repo
+      tags: always
+      ansible.builtin.apt_repository:
+        repo: deb https://apt.kubernetes.io/ kubernetes-xenial main
+        state: present
+        filename: kubernetes.list
+- name: Install kubelet, kubeadm , kubectl , kubernetes-cni
+  hosts: all
+  tasks:
+    - name: Installing kubelet, kubeadm , kubectl , kubernetes-cni
+      tags: always
+      ansible.builtin.apt:
+        name:
+          - kubelet
+          - kubeadm
+          - kubectl
+          - kubernetes-cni
+        state: present
+        update_cache: true
