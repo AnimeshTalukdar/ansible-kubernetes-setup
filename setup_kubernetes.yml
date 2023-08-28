@@ -27,6 +27,7 @@
           - docker.io
           - apt-transport-https
           - curl
+          - gpg
 # add a gpg key
 - name: Add Kubernetes GPG key
   hosts: all
