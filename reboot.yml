@@ -1,0 +1,9 @@
+---
+- name: Reboot
+  hosts: all
+  become: true
+  tasks:
+    - name: Reboot the machine
+      tags: always
+      changed_when: false
+      ansible.builtin.command: reboot

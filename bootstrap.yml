@@ -1,0 +1,14 @@
+---
+- name: Bootstrap
+  hosts: all
+  become: true
+  pre_tasks:
+    - name: Install Updates
+      ansible.builtin.apt:
+        update_cache: true
+        upgrade: true
+  tasks:
+    - name: Copy ssh key
+      ansible.posix.authorized_key:
+        user: root
+        key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQC2HMpYJHxXVi3Ad4yaPG5KdwuUoYO1o/ylXxGC/CbdGR2vVcdAqQrlaNzqES7/zTm9HR38LQhMGwo7zTCgKcSPMw81f4gI7vwRRZO8ze3b6/Gv15VCehw09uQskEl5boHG/n13TO/zKW3xflpI6PpMNxHX0iOOFcCN3EYmjMUB7a57SSLkV6nGFPDY3F56PydTTB7wL6H2fCUzfpdec0VDc6yvfVdrfOWYj2XmJ31f1oxx85q83AB1BKqJxotFv4FqRRK2zJKYx1P5miFF1cHf7Qs2sSfw6E+uVcA/RJo5PJWdP2FGjaB0fkBes4rZa/6wcedcVH04Y5vhK8tFSF0T7lws51pAJ+2KprJPoL/z71dL3kPp+pYelC6ssOdNErk9hpubbqDOEpA6IftlCcvq+ytMU71cyszy6FQ3LdXZnmRYGCjyW044Arm1goWL3Sn/9jucIOY0wyqKxDcysOa7YOQxteezAAvBezDU7h/LpbfX2iQSX/xSdON0MbUxUZs= animeshtalukdar@Animeshs-Air"

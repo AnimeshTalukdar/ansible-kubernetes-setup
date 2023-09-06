@@ -1,0 +1,8 @@
+---
+- name: Install qemu Guest agent
+  hosts: all
+  tasks:
+    - name: Install qemu Guest agent
+      tags: always
+      ansible.builtin.apt:
+        name: qemu-guest-agent
